@@ -1,0 +1,38 @@
+<ion-header [translucent]="true"> </ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="calculator">
+    <div class="calculator__panel">
+      <p>{{valueToDisplay}}</p>
+    </div>
+
+    <div class="calculator__body">
+      <ng-container *ngFor="let calculatorItem of calculatorItems">
+        <button
+          (click)="handleButtonClick(calculatorItem)"
+          [ngClass]="{'trigonometric': calculatorItem.isTrigonometric, 
+          'blueOperator': calculatorItem.isBlue,
+          'purpleOperator': calculatorItem.isPurple,
+          'redOperator': calculatorItem.isRed,
+        }"
+        >
+          {{calculatorItem.value}}
+        </button>
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-container *ngIf="hasError">
+    <p class="errorMsg">{{errorMsg}}</p>
+
+    <span class="tip">
+      Clique no botão "C" para reiniciar o cálculo ou no botão abaixo para
+      voltar ao início.
+    </span>
+  </ng-container>
+
+  <button class="btn-leave" (click)="handleLeaveClick()">
+    Sair
+    <ion-icon name="exit-outline"></ion-icon>
+  </button>
+</ion-content>
