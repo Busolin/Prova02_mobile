@@ -1,20 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header [translucent]="true"> </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Login</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <ng-container *ngIf="invalidForm">
+            <p>Nome ou senha inválidos.</p>
+          </ng-container>
+
+          <div class="form__wrapper">
+            <label for="login">Login</label>
+            <input
+              type="text"
+              id="login"
+              formControlName="login"
+              placeholder="John Doe"
+            />
+          </div>
+
+          <div class="form__wrapper">
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              placeholder="*****"
+            />
+          </div>
+
+          <button
+            class="form__button"
+            [disabled]="!loginForm.valid"
+            type="submit"
+          >
+            <ion-icon name="log-in-outline"></ion-icon>
+            Entrar
+          </button>
+        </form>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
